@@ -211,7 +211,10 @@ public with sharing class TriggerTest {
 
         // Perform the test
         Test.startTest();
-        insert accountsToInsert;
+        Database.DMLOptions dml = new Database.DMLOptions(); 
+        dml.DuplicateRuleHeader.allowSave = true;
+        dml.DuplicateRuleHeader.runAsCurrentUser = true;
+        Database.insert(accountsToInsert, dml);
         Test.stopTest();
 
         // Retrieve the newly created Contacts
